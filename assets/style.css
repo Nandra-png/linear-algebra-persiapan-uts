@@ -164,3 +164,12 @@ mjx-container[display="true"]{margin:.55em 0!important;background:rgba(255,255,2
 }
 @media print{body{background:#fff;padding:0}.rail,.toggles{display:none!important}.wrap{display:block;max-width:none}
   .sheet{box-shadow:none;border:none;border-radius:0;margin:0;page-break-after:always;max-width:none}}
+.diktat-strip .diktat-body{margin-top:8px;display:grid;gap:8px}
+.diktat-fig{background:#fff;border:1px solid #d9e2ef;border-radius:6px;overflow:hidden}
+.diktat-fig summary{cursor:pointer;padding:10px 12px;font-size:13px;font-weight:700;color:#1f4f7a;display:flex;justify-content:space-between;gap:10px;align-items:baseline;list-style:none}
+.diktat-fig summary::-webkit-details-marker{display:none}
+.diktat-fig summary::before{content:"B8";color:#4789bd;margin-right:7px;font-size:11px}
+.diktat-fig[open] summary::before{content:"BE"}
+.diktat-fig summary span{font-weight:600;color:#6a7280;font-size:11.5px;white-space:nowrap}
+.diktat-fig[open] summary{border-bottom:1px solid #e7eef7;background:#f7f9fc}
+.diktat-fig img{display:block;width:100%;height:auto}

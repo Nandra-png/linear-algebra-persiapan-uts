@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cheat Sheet A4 — Aljabar Linear</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+body{background:#e7e2d5}
+.wrap{display:block;grid-template-columns:none;max-width:1080px;margin:0 auto;padding:18px 14px 60px}
+.cs-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:0 0 12px;font-family:var(--mono,ui-monospace,monospace);font-size:12px;color:#3a4450;letter-spacing:.06em;text-transform:uppercase}
+.a4{background:#fff;box-shadow:0 10px 30px rgba(40,30,10,.18);border:1px solid #d8d1bf;padding:16mm 12mm;margin:0 auto 18px;max-width:210mm;min-height:297mm;font-family:var(--mono,ui-monospace,"Cascadia Mono",monospace);font-size:11.4px;line-height:1.42;color:#16202b}
+.a4 h2{font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:9px 0 4px;padding-bottom:2px;border-bottom:1.5px solid #16202b}
+.a4 h2:first-child{margin-top:0}
+.a4 p{margin:3px 0}
+.a4 ul{margin:3px 0 3px 15px;padding:0}
+.a4 li{margin:1.5px 0}
+.a4 .two{column-count:2;column-gap:9mm}
+.a4 .two > *{break-inside:avoid}
+.f{display:block;margin:5px 0;padding:3px 6px;background:#f7f4ea;border-left:2.5px solid #c0392b;font-size:11.6px;break-inside:avoid}
+.f small{display:block;color:#5b6672;font-size:9.6px;letter-spacing:0;text-transform:none}
+.tag{display:inline-block;background:#16202b;color:#fff;font-size:8.6px;letter-spacing:.1em;padding:1px 5px;border-radius:2px;vertical-align:1px}
+.warn{border-left-color:#1f5fa8;background:#eef3fa}
+.side{text-align:center;font-size:9.5px;letter-spacing:.2em;color:#8a8272;text-transform:uppercase;margin:2px 0 6px}
+@media print{
+  body{background:#fff}
+  .wrap{padding:0;max-width:none}
+  .cs-head,.toggles{display:none}
+  .a4{box-shadow:none;border:0;margin:0;max-width:none;min-height:0;padding:10mm 9mm;break-after:page}
+  .a4:last-child{break-after:auto}
+  @page{size:A4;margin:0}
+}
+</style>
+<script src="assets/app.js"></script>
+<script defer src="assets/tex-svg.js"></script>
+</head>
+<body>
+<div class="toggles"><button data-toggle=".cs-head">☰</button></div>
+<div class="wrap">
+<div class="cs-head"><span>Cheat sheet · Aljabar Linear · MATH6129031</span><span>salin tangan ke A4 · <a href="index.html">kembali</a></span></div>
+
+<!-- ================= SIDE 1 ================= -->
+<div class="a4">
+  <div class="side">Sisi 1 — SPL, Matriks, Determinan</div>
+  <div class="two">
+
+    <h2>1 · SPL &amp; OBE</h2>
+    <p>Augmented \( [A\mid b] \). Target: <b>RREF</b> (leading 1, kolom pivot bersih).</p>
+    <div class="f">\(R_i\leftrightarrow R_j\)<small>tukar baris</small></div>
+    <div class="f">\(R_i\leftarrow kR_i,\;k\ne0\)<small>skala baris</small></div>
+    <div class="f">\(R_i\leftarrow R_i+kR_j\)<small>eliminasi</small></div>
+    <p><b>Baca hasil:</b></p>
+    <ul>
+      <li>Baris \(0=0\) → variabel bebas (parametrik).</li>
+      <li>Baris \(0=c,\;c\ne0\) → <b>tidak ada solusi</b>.</li>
+      <li>Semua kolom pivot → solusi tunggal.</li>
+    </ul>
+    <p>Jumlah variabel bebas \(=n-\operatorname{rank}(A)\).</p>
+
+    <h2>2 · Operasi Matriks</h2>
+    <div class="f">\((AB)_{ij}=\sum_k a_{ik}b_{kj}\)<small>baris \(i\) × kolom \(j\); ukuran \((m\times n)(n\times p)\)</small></div>
+    <div class="f">\((A^T)_{ij}=a_{ji}\)</div>
+    <div class="f">\((AB)^T=B^TA^T\)<small>urutan dibalik</small></div>
+    <div class="f">\((AB)^{-1}=B^{-1}A^{-1}\)<small>urutan dibalik</small></div>
+    <div class="f">\(\operatorname{tr}(A)=\sum a_{ii}\)<small>jejak = jumlah diagonal</small></div>
+    <p>\(AB\ne BA\) umumnya. \(A(B+C)=AB+AC\) tetap berlaku.</p>
+    <p>Simetris: \(A^T=A\). Skew: \(A^T=-A\) (diagonal nol).</p>
+
+    <h2>3 · Determinan</h2>
+    <div class="f">\(\begin{vmatrix}a&b\\c&d\end{vmatrix}=ad-bc\)</div>
+    <div class="f">\(\det A=\sum_j(-1)^{1+j}a_{1j}M_{1j}\)<small>ekspansi baris 1; \(M\) minor</small></div>
+    <div class="f">Sarrus 3×3: 3 diagonal turun \((+)\) − 3 diagonal naik \((-)\)</div>
+    <p><b>Efek OBE:</b></p>
+    <ul>
+      <li>Tukar 2 baris → \(\det\) jadi \(-\det\).</li>
+      <li>\(R_i\leftarrow kR_i\) → \(\det\) jadi \(k\det\).</li>
+      <li>\(R_i\leftarrow R_i+kR_j\) → \(\det\) <b>tidak berubah</b>.</li>
+    </ul>
+    <p>Matriks segitiga: \(\det=\prod\) diagonal.</p>
+    <div class="f warn">\(\det(AB)=\det A\cdot\det B\)<small>tetapi \(\det(A+B)\ne\det A+\det B\)</small></div>
+    <div class="f warn">\(\det(kA)=k^n\det A\)<small>\(n\) = ukuran matriks</small></div>
+    <div class="f">\(\det A^T=\det A,\quad \det A^{-1}=1/\det A\)</div>
+    <p>\(\det A=0\iff A\) singular \(\iff\) kolom dependen \(\iff Ax=0\) punya solusi nontrivial.</p>
+
+    <h2>4 · Invers</h2>
+    <div class="f">\(A^{-1}=\dfrac{1}{\det A}\operatorname{adj}(A)\)<small>\(\operatorname{adj}=\) transpose matriks kofaktor</small></div>
+    <div class="f">\(\begin{pmatrix}a&b\\c&d\end{pmatrix}^{-1}=\dfrac{1}{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}\)<small>tukar diagonal, negatifkan off-diagonal</small></div>
+    <p>Gauss-Jordan: \([A\mid I]\to[I\mid A^{-1}]\).</p>
+    <p>Cek: \(AA^{-1}=I\). Kalau tidak, ada salah tanda kofaktor.</p>
+    <p>\(A,B\) invertible \(\Rightarrow (AB)^{-1}\) ada; \(A^{-1}\) ada \(\iff \det A\ne0\).</p>
+
+    <h2>5 · SPL: Invers &amp; Cramer</h2>
+    <div class="f">\(Ax=b\;\Rightarrow\;x=A^{-1}b\)<small>syarat \(\det A\ne0\)</small></div>
+    <div class="f">\(x_j=\dfrac{D_j}{D}\)<small>ganti <b>kolom</b> ke-\(j\) dengan \(b\)</small></div>
+    <p>Cramer: \(n+1\) determinan. \(D=0\) → Cramer gagal, pakai OBE.</p>
+    <p>Urutan efisiensi: ukuran kecil &amp; solusi tunggal → Cramer; banyak \(b\) dengan \(A\) sama → invers; sisanya → OBE.</p>
+  </div>
+</div>
+
+<!-- ================= SIDE 2 ================= -->
+<div class="a4">
+  <div class="side">Sisi 2 — Vektor, Jebakan, Checklist</div>
+  <div class="two">
+
+    <h2>6 · Vektor dasar</h2>
+    <div class="f">\(\|u\|=\sqrt{u_1^2+u_2^2+u_3^2}\)</div>
+    <div class="f">\(\hat u=\dfrac{u}{\|u\|}\)<small>vektor satuan</small></div>
+    <p>Jarak \(d(u,v)=\|u-v\|\).</p>
+
+    <h2>7 · Dot product</h2>
+    <div class="f">\(u\cdot v=u_1v_1+u_2v_2+u_3v_3\)<small>hasil: skalar</small></div>
+    <div class="f">\(u\cdot v=\|u\|\|v\|\cos\theta\)<small>\(\cos\theta=\dfrac{u\cdot v}{\|u\|\|v\|}\)</small></div>
+    <p>\(u\cdot v=0\iff\) tegak lurus (ortogonal).</p>
+    <p>Dot \(&gt;0\) lancip · \(=0\) siku · \(&lt;0\) tumpul.</p>
+    <div class="f">\(\operatorname{proj}_a u=\dfrac{u\cdot a}{a\cdot a}\,a\)<small>penyebut \(a\cdot a\), bukan \(u\cdot u\)</small></div>
+    <p>Komponen tegak lurus: \(u-\operatorname{proj}_a u\). Cek dot dengan \(a\) = 0.</p>
+
+    <h2>8 · Cross product</h2>
+    <div class="f">\(u\times v=\begin{vmatrix}\mathbf i&\mathbf j&\mathbf k\\u_1&u_2&u_3\\v_1&v_2&v_3\end{vmatrix}\)<small>hasil: vektor, hanya di \(R^3\)</small></div>
+    <div class="f">\(=(u_2v_3-u_3v_2,\;u_3v_1-u_1v_3,\;u_1v_2-u_2v_1)\)<small>komponen tengah: perhatikan tanda</small></div>
+    <p>\(u\times v=-(v\times u)\). \(u\times u=0\).</p>
+    <p>Tegak lurus: \(u\cdot(u\times v)=0\) dan \(v\cdot(u\times v)=0\).</p>
+    <div class="f">\(\|u\times v\|=\|u\|\|v\|\sin\theta\)<small>= luas jajargenjang; segitiga \(=\tfrac12\|u\times v\|\)</small></div>
+    <div class="f">\(\|u\times v\|^2=\|u\|^2\|v\|^2-(u\cdot v)^2\)<small>cek cepat</small></div>
+    <p>Cross \(=0\iff u,v\) sejajar (dependen).</p>
+
+    <h2>9 · Independensi linear</h2>
+    <p>Vektor \(v_1,\dots,v_k\) independen \(\iff\) \(c_1v_1+\dots+c_kv_k=0\) hanya dipenuhi semua \(c_i=0\).</p>
+    <p>Praktik: susun sebagai kolom, hitung \(\det\). \(\det=0\) → dependen. Untuk \(k&gt;n\) pasti dependen.</p>
+
+    <h2>10 · Jebakan yang sering kena</h2>
+    <ul>
+      <li>Cramer: ganti <b>kolom</b>, bukan baris.</li>
+      <li>\(\det(kA)=k^n\det A\) — jangan lupa pangkat.</li>
+      <li>\((AB)^{-1}=B^{-1}A^{-1}\) — bukan \(A^{-1}B^{-1}\).</li>
+      <li>\(\det(A+B)\ne\det A+\det B\).</li>
+      <li>Proyeksi: penyebut \(a\cdot a\).</li>
+      <li>Tanda kofaktor \((-1)^{i+j}\) — pola papan catur.</li>
+      <li>Solusi parametrik: sebut bentuk ruangnya (garis/bidang).</li>
+      <li>Tanpa kalkulator: biarkan \(\sqrt{}\), pecahan, dan \(\cos^{-1}\) eksak.</li>
+    </ul>
+
+    <h2>11 · Checklist 5 menit terakhir</h2>
+    <ul>
+      <li>Metode yang diminta sudah dipakai?</li>
+      <li>Semua variabel terjawab?</li>
+      <li>Substitusi balik / \(AA^{-1}=I\) / dot = 0 sudah dicek?</li>
+      <li>Satuan sudut: derajat atau radian?</li>
+      <li>Kesimpulan ditulis ulang dalam satu baris?</li>
+    </ul>
+
+    <h2>12 · Angka yang perlu hafal</h2>
+    <p>\(\sqrt2\approx1{,}414\;\; \sqrt3\approx1{,}732\;\; \sqrt5\approx2{,}236\;\; \sqrt{10}\approx3{,}162\)</p>
+    <p>\(\cos0=1,\;\cos30=\tfrac{\sqrt3}2,\;\cos45=\tfrac{\sqrt2}2,\;\cos60=\tfrac12,\;\cos90=0\)</p>
+    <p>Sudut istimewa: \(30°,45°,60°,90°\) — kalau \(\cos\theta\) bukan nilai istimewa, jawab sebagai \(\cos^{-1}\).</p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

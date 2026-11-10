@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Latihan &amp; Pembahasan — Persiapan UTS Aljabar Linear</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js"></script>
+<script defer src="assets/tex-svg.js"></script>
+</head>
+<body>
+<div class="toggles"><button data-toggle=".rail.left">☰ Daftar</button><button data-toggle=".rail.right">📌 Petunjuk</button></div>
+<div class="wrap">
+
+<aside class="rail left">
+  <div class="panel"><h4>7 Soal Latihan-1</h4><ul class="road">
+    <li><a href="#p1">1 · Gauss-Jordan + invers<small>SPL 3×3</small></a><span class="dot"></span></li>
+    <li><a href="#p2">2 · Determinan + Cramer<small>bandingkan dua metode</small></a><span class="dot"></span></li>
+    <li><a href="#p3">3 · Solusi parametrik<small>rank &amp; ruang solusi</small></a><span class="dot"></span></li>
+    <li><a href="#p4">4 · Dot + sudut<small>interpretasi geometris</small></a><span class="dot"></span></li>
+    <li><a href="#p5">5 · Cross product<small>tegak lurus &amp; norma</small></a><span class="dot"></span></li>
+    <li><a href="#p6">6 · Proyeksi vektor<small>+ komponen tegak lurus</small></a><span class="dot"></span></li>
+    <li><a href="#p7">7 · Independensi linear<small>hubungan antar vektor</small></a><span class="dot"></span></li>
+    <li><a href="#drill">Drill tambahan<small>tipe ujian</small></a><span class="dot"></span></li>
+  </ul></div>
+  <div class="panel"><h4>Halaman Lain</h4><ul class="road">
+    <li><a href="index.html">Halaman Depan</a><span class="dot"></span></li>
+    <li><a href="materi.html">Materi 7 Modul</a><span class="dot"></span></li>
+    <li><a href="cheatsheet.html">Cheat Sheet A4</a><span class="dot"></span></li>
+  </ul></div>
+</aside>
+
+<main>
+<section class="sheet">
+  <div class="head"><div class="badge">LAT</div><div><h1>Latihan Pre-Exam + Pembahasan</h1><div class="sub">7 soal dari <code>Soal_Latihan-1.pdf</code> · semua hasil diverifikasi ulang</div></div></div>
+  <div class="trap-card">
+    <b>Cara pakai: kerjakan di kertas dulu, jangan buka <i>Lihat pembahasan</i>.</b>
+    <p>Ujian tanpa kalkulator dan cuma 100 menit. Kalau lu cuma membaca pembahasan, otak akan merasa paham padahal belum bisa mengerjakan. Yang dihitung adalah kemampuan menulis langkah dari kertas kosong.</p>
+  </div>
+  <p><b>Soal 3 catatan:</b> di PDF, sistemnya \(x+y+z=4,\;2x+3y+z=9,\;3x+4y+2z=13\). Di versi teks hasil ekstraksi, angka-angka itu terpisah baris sehingga sempat terbaca berantakan; di sini sudah dibaca dari tampilan PDF-nya.</p>
+  <p><b>Soal jawaban Hazel:</b> filenya scan tulisan tangan tanpa text layer, dan pembaca gambar gue gagal membaca halaman penuh (berkali-kali timeout). Jadi pembahasan di bawah adalah <b>hitungan gue sendiri</b> yang diverifikasi dengan aljabar simbolik — bukan salinan jawaban Hazel. Gue nggak mau nulis “kata Hazel” untuk sesuatu yang nggak bisa gue baca.</p>
+</section>
+
+<section class="sheet" id="p1">
+  <div class="head"><div class="badge">1</div><div><h2>Gauss-Jordan &amp; Verifikasi Invers</h2><div class="sub">Bagian A · LO1–LO2</div></div></div>
+  <div class="bedah">
+    <div class="top"><span class="no">1</span><span class="ttl">SPL 3×3, dua metode</span></div>
+    <div class="soal">\[ A=\begin{pmatrix}1&2&1\\2&1&-1\\1&-1&2\end{pmatrix},\qquad b=\begin{pmatrix}8\\1\\5\end{pmatrix} \]<br>a) tulis matriks diperluas; b) selesaikan dengan Gauss-Jordan; c) verifikasi dengan \(x=A^{-1}b\).</div>
+    <h5>(a) Matriks diperluas</h5>
+    \[ [A\mid b]=\left(\begin{array}{ccc|c}1&2&1&8\\2&1&-1&1\\1&-1&2&5\end{array}\right) \]
+    <h5>(b) Eliminasi</h5>
+    <p class="baca">\(R_2\leftarrow R_2-2R_1\) dan \(R_3\leftarrow R_3-R_1\):</p>
+    \[ \left(\begin{array}{ccc|c}1&2&1&8\\0&-3&-3&-15\\0&-3&1&-3\end{array}\right)\xrightarrow{R_2\leftarrow-\frac13R_2}\left(\begin{array}{ccc|c}1&2&1&8\\0&1&1&5\\0&-3&1&-3\end{array}\right) \]
+    <p class="baca">\(R_3\leftarrow R_3+3R_2\):</p>
+    \[ \left(\begin{array}{ccc|c}1&2&1&8\\0&1&1&5\\0&0&4&12\end{array}\right)\xrightarrow{R_3\leftarrow\frac14R_3}\left(\begin{array}{ccc|c}1&2&1&8\\0&1&1&5\\0&0&1&3\end{array}\right) \]
+    <p class="baca">Fase balik: \(R_2\leftarrow R_2-R_3\) lalu \(R_1\leftarrow R_1-R_3\):</p>
+    \[ \left(\begin{array}{ccc|c}1&2&0&5\\0&1&0&2\\0&0&1&3\end{array}\right)\xrightarrow{R_1\leftarrow R_1-2R_2}\left(\begin{array}{ccc|c}1&0&0&1\\0&1&0&2\\0&0&1&3\end{array}\right) \]
+    <div class="jawab"><b>Solusi:</b> \(x=1,\;y=2,\;z=3\). Cek: \(1+2(2)+3=8\) ✓; \(2(1)+2-3=1\) ✓; \(1-2+2(3)=5\) ✓.</div>
+    <h5>(c) Verifikasi lewat invers</h5>
+    <p class="baca">\(\det A=1(2-1)-2(4+1)+1(-2-1)=1-10-3=-12\neq0\) → \(A\) invertible.</p>
+    \[ A^{-1}=\frac{1}{-12}\begin{pmatrix}-1&5&3\\5&-1&-3\\3&-3&3\end{pmatrix}=\begin{pmatrix}-\frac1{12}&\frac5{12}&\frac14\\\frac5{12}&-\frac1{12}&-\frac14\\\frac14&-\frac14&\frac14\end{pmatrix} \]
+    \[ x=A^{-1}b=\begin{pmatrix}\frac{-8+5+15}{12}\\\frac{40-1-15}{12}\\\frac{8-5+15}{12}\end{pmatrix}=\begin{pmatrix}\frac{12}{12}\\\frac{24}{12}\\\frac{18}{12}\end{pmatrix}=\begin{pmatrix}1\\2\\3\end{pmatrix} \]
+    <div class="jawab">Dua metode memberi hasil sama: \((1,2,3)\). Ini yang dimaksud “verifikasi” di soal c — bukan mengulang cara yang sama, tapi mengecek lewat jalur berbeda.</div>
+    <div class="jeb">Waktu menghitung \(A^{-1}\) lewat adjoin, perhatikan tanda \((-1)^{i+j}\). Satu tanda salah akan membuat satu baris hasil meleset, sementara dua baris lain tetap benar — jadi cek dengan perkalian, jangan cuma “kelihatan masuk akal”.</div>
+  </div>
+</section>
+
+<section class="sheet" id="p2">
+  <div class="head"><div class="badge">2</div><div><h2>Determinan, Cramer, dan Invers</h2><div class="sub">Bagian A · satu sistem, tiga alat</div></div></div>
+  <div class="bedah">
+    <div class="top"><span class="no">2</span><span class="ttl">Cramer vs \(A^{-1}b\)</span></div>
+    <div class="soal">\[ A=\begin{pmatrix}2&1&1\\1&2&0\\1&0&2\end{pmatrix},\qquad b=\begin{pmatrix}3\\-1\\5\end{pmatrix} \]</div>
+    <h5>(a) Determinan</h5>
+    <p class="baca">Ekspansi baris 1:</p>
+    \[ \det A=2\begin{vmatrix}2&0\\0&2\end{vmatrix}-1\begin{vmatrix}1&0\\1&2\end{vmatrix}+1\begin{vmatrix}1&2\\1&0\end{vmatrix}=2(4)-1(2)+1(-2)=4 \]
+    <p class="baca">\(\det A=4\neq0\) → solusi tunggal, Cramer sah dipakai.</p>
+    <h5>(b) Aturan Cramer</h5>
+    \[ D_x=\begin{vmatrix}3&1&1\\-1&2&0\\5&0&2\end{vmatrix}=3(4)-1(-2)+1(-10)=4 \]
+    \[ D_y=\begin{vmatrix}2&3&1\\1&-1&0\\1&5&2\end{vmatrix}=2(-2)-3(2)+1(6)=-4 \]
+    \[ D_z=\begin{vmatrix}2&1&3\\1&2&-1\\1&0&5\end{vmatrix}=2(10)-1(6)+3(-2)=8 \]
+    \[ x=\frac{4}{4}=1,\qquad y=\frac{-4}{4}=-1,\qquad z=\frac{8}{4}=2 \]
+    <div class="jawab"><b>Solusi:</b> \((1,-1,2)\). Cek: \(2(1)+(-1)+2=3\) ✓; \(1+2(-1)=-1\) ✓; \(1+2(2)=5\) ✓.</div>
+    <h5>(c) Bandingkan dengan metode invers</h5>
+    <p class="baca">Kofaktor \(A\), lalu transpose dan bagi \(\det A=4\):</p>
+    \[ A^{-1}=\frac14\begin{pmatrix}4&-2&-2\\-2&3&1\\-2&1&3\end{pmatrix},\qquad A^{-1}b=\frac14\begin{pmatrix}12+2-10\\-6-3+5\\-6-1+15\end{pmatrix}=\frac14\begin{pmatrix}4\\-4\\8\end{pmatrix}=\begin{pmatrix}1\\-1\\2\end{pmatrix} \]
+    <div class="jawab">Dua metode sepakat: Cramer memberi \((1,-1,2)\), invers memberi \((1,-1,2)\). Perhatikan bahwa Cramer dan invers sebenarnya memakai bahan yang sama — determinan. Bedanya, Cramer menyusun ulang kolom, sedangkan invers menghitung seluruh adjoin sekali lalu dikali \(b\).</div>
+  </div>
+</section>
+
+<section class="sheet" id="p3">
+  <div class="head"><div class="badge">3</div><div><h2>Operasi Baris &amp; Solusi Parametrik</h2><div class="sub">Bagian A · LO1–LO2</div></div></div>
+  <div class="bedah">
+    <div class="top"><span class="no">3</span><span class="ttl">Tiga persamaan, satu parameter</span></div>
+    <div class="soal">\[ \begin{cases}x+y+z=4\\2x+3y+z=9\\3x+4y+2z=13\end{cases} \]</div>
+    <h5>(a) Augmentasi &amp; eliminasi</h5>
+    \[ \left(\begin{array}{ccc|c}1&1&1&4\\2&3&1&9\\3&4&2&13\end{array}\right)\xrightarrow[R_3-3R_1]{R_2-2R_1}\left(\begin{array}{ccc|c}1&1&1&4\\0&1&-1&1\\0&1&-1&1\end{array}\right)\xrightarrow{R_3-R_2}\left(\begin{array}{ccc|c}1&1&1&4\\0&1&-1&1\\0&0&0&0\end{array}\right) \]
+    <p class="baca">\(R_1\leftarrow R_1-R_2\):</p>
+    \[ \left(\begin{array}{ccc|c}1&0&2&3\\0&1&-1&1\\0&0&0&0\end{array}\right) \]
+    <h5>(b) Bentuk parametrik</h5>
+    <p class="baca">Kolom \(z\) tidak punya <i>leading 1</i> → \(z=t\), lalu:</p>
+    \[ x=3-2t,\qquad y=1+t,\qquad z=t,\qquad t\in\mathbb R \]
+    <h5>(c) Banyak solusi &amp; ruang solusi</h5>
+    <p class="baca">\(\operatorname{rank}(A)=2\), jumlah variabel \(n=3\), jadi variabel bebas \(=3-2=1\) → <b>tak hingga solusi</b>. Satu parameter berarti himpunan solusinya <b>garis</b> di \(R^3\), melalui titik \((3,1,0)\) dengan arah \((-2,1,1)\).</p>
+    <div class="jawab">\((x,y,z)=(3-2t,\;1+t,\;t)\). Cek \(t=1\): \((1,2,1)\) → \(1+2+1=4\) ✓, \(2+6+1=9\) ✓, \(3+8+2=13\) ✓.</div>
+    <div class="jeb">Poin (c) sering dijawab “tak hingga” lalu berhenti. Yang diminta <i>ruang solusinya</i> — sebut garis (1 parameter), bidang (2 parameter), atau titik (0 parameter).</div>
+  </div>
+</section>
+
+<section class="sheet" id="p4">
+  <div class="head"><div class="badge">4</div><div><h2>Dot Product &amp; Sudut</h2><div class="sub">Bagian B · LO3</div></div></div>
+  <div class="bedah">
+    <div class="top"><span class="no">4</span><span class="ttl">Interpretasi geometris dot</span></div>
+    <div class="soal">\[ a=(2,-1,3),\qquad b=(4,0,2) \]</div>
+    <h5>(a) Dot product</h5>
+    \[ a\cdot b=2(4)+(-1)(0)+3(2)=8+0+6=14 \]
+    <p class="baca">Interpretasi: hasilnya <b>positif</b>, jadi sudut antara \(a\) dan \(b\) <b>lancip</b> (kurang dari \(90^\circ\)) — kedua vektor cenderung searah. Dot juga sama dengan \(\|a\|\|b\|\cos\theta\), jadi angka 14 ini adalah “panjang \(b\) yang diproyeksikan ke arah \(a\)” dikali \(\|a\|\).</p>
+    <h5>(b) Sudut</h5>
+    \[ \|a\|=\sqrt{4+1+9}=\sqrt{14},\qquad \|b\|=\sqrt{16+0+4}=\sqrt{20}=2\sqrt5 \]
+    \[ \cos\theta=\frac{14}{\sqrt{14}\cdot2\sqrt5}=\frac{14}{2\sqrt{70}}=\frac{7}{\sqrt{70}}=\frac{\sqrt{70}}{10} \]
+    <div class="jawab">\(\theta=\cos^{-1}\!\left(\dfrac{\sqrt{70}}{10}\right)\approx 33{,}2^\circ\). Tanpa kalkulator, bentuk \(\cos\theta=\frac{\sqrt{70}}{10}\) sudah jawaban lengkap — tulis juga perkiraan “sekitar 33°” supaya jelas sudutnya lancip dan wajar.</div>
+    <div class="jeb">Norma \(b\): \(\sqrt{20}=2\sqrt5\), bukan \(\sqrt{20}\) yang ditinggal. Menyederhanakan akar bikin pecahan \(\cos\theta\) gampang disederhanakan — di sini \(\frac{14}{2\sqrt{70}}\) jadi \(\frac{7}{\sqrt{70}}\), lalu dirasionalkan jadi \(\frac{\sqrt{70}}{10}\).</div>
+  </div>
+</section>
+
+<section class="sheet" id="p5">
+  <div class="head"><div class="badge">5</div><div><h2>Cross Product</h2><div class="sub">Bagian B · LO3</div></div></div>
+  <div class="bedah">
+    <div class="top"><span class="no">5</span><span class="ttl">Hitung, buktikan tegak lurus, cari norma</span></div>
+    <div class="soal">\[ u=(1,2,3),\qquad v=(3,1,-2) \]</div>
+    <h5>(a) Cross product</h5>
+    \[ u\times v=\begin{vmatrix}\mathbf i&\mathbf j&\mathbf k\\1&2&3\\3&1&-2\end{vmatrix}=\mathbf i\bigl(2(-2)-3(1)\bigr)-\mathbf j\bigl(1(-2)-3(3)\bigr)+\mathbf k\bigl(1(1)-2(3)\bigr) \]
+    \[ =(-4-3,\;-(-2-9),\;1-6)=(-7,\;11,\;-5) \]
+    <h5>(b) Bukti tegak lurus</h5>
+    \[ u\cdot(u\times v)=1(-7)+2(11)+3(-5)=-7+22-15=0 \]
+    \[ v\cdot(u\times v)=3(-7)+1(11)+(-2)(-5)=-21+11+10=0 \]
+    <p class="baca">Kedua dot nol → hasilnya tegak lurus terhadap \(u\) maupun \(v\).</p>
+    <h5>(c) Norma</h5>
+    \[ \|u\times v\|=\sqrt{(-7)^2+11^2+(-5)^2}=\sqrt{49+121+25}=\sqrt{195}\approx13{,}96 \]
+    <div class="jawab">\(u\times v=(-7,11,-5)\), \(\|u\times v\|=\sqrt{195}\). Angka ini juga luas jajargenjang yang dibentang \(u\) dan \(v\); luas segitiganya \(\frac{\sqrt{195}}{2}\).</div>
+    <div class="jeb">Cek cepat: \(\|u\times v\|^2=\|u\|^2\|v\|^2-(u\cdot v)^2=14\cdot14-(-1)^2=196-1=195\) ✓. Rumus ini berguna untuk memeriksa hasil cross tanpa mengulang tiga komponen, dan sekaligus menjelaskan kenapa \(\|u\times v\|=\|u\|\|v\|\sin\theta\).</div>
+  </div>
+</section>
+
+<section class="sheet" id="p6">
+  <div class="head"><div class="badge">6</div><div><h2>Proyeksi &amp; Komponen Tegak Lurus</h2><div class="sub">Bagian B · LO3</div></div></div>
+  <div class="bedah">
+    <div class="top"><span class="no">6</span><span class="ttl">Bayangan \(u\) pada arah \(a\)</span></div>
+    <div class="soal">\[ u=(3,4),\qquad a=(1,2)\quad(\text{di }R^2) \]</div>
+    <h5>(a) Proyeksi</h5>
+    \[ u\cdot a=3(1)+4(2)=11,\qquad a\cdot a=1+4=5 \]
+    \[ \operatorname{proj}_a(u)=\frac{u\cdot a}{a\cdot a}\,a=\frac{11}{5}(1,2)=\left(\frac{11}{5},\frac{22}{5}\right)=(2{,}2;\;4{,}4) \]
+    <h5>(b) Komponen tegak lurus</h5>
+    \[ u-\operatorname{proj}_a(u)=(3,4)-\left(\frac{11}{5},\frac{22}{5}\right)=\left(\frac{15-11}{5},\frac{20-22}{5}\right)=\left(\frac45,-\frac25\right) \]
+    <div class="jawab">Proyeksi \(=\left(\frac{11}{5},\frac{22}{5}\right)\); komponen tegak lurus \(=\left(\frac45,-\frac25\right)\). Cek: \(\left(\frac45,-\frac25\right)\cdot(1,2)=\frac45-\frac45=0\) ✓ tegak lurus \(a\); dan jumlah kedua komponen kembali ke \((3,4)\) ✓.</div>
+    <div class="jeb">Penyebutnya \(a\cdot a\), bukan \(u\cdot u\). Kalau kebalik, hasilnya vektor yang arahnya benar tapi panjangnya salah — dan itu sulit kelihatan kalau tidak dicek dengan penjumlahan komponen.</div>
+  </div>
+</section>
+
+<section class="sheet" id="p7">
+  <div class="head"><div class="badge">7</div><div><h2>Independensi Linear</h2><div class="sub">Bagian B · LO3</div></div></div>
+  <div class="bedah">
+    <div class="top"><span class="no">7</span><span class="ttl">Tiga vektor, satu hubungan</span></div>
+    <div class="soal">\[ v_1=(1,2,3),\qquad v_2=(2,4,6),\qquad v_3=(1,0,1) \]</div>
+    <h5>(a) Uji independensi</h5>
+    <p class="baca">Susun sebagai kolom, lalu uji \(\det\neq0\). Ekspansi baris 1:</p>
+    \[ \det\begin{pmatrix}1&2&1\\2&4&0\\3&6&1\end{pmatrix}=1(4-0)-2(2-0)+1(12-12)=4-4+0=0 \]
+    <p class="baca">Determinan nol → sistem homogen \(k_1v_1+k_2v_2+k_3v_3=0\) punya solusi nontrivial → <b>tidak independen (dependen)</b>.</p>
+    <h5>(b) Hubungan linear</h5>
+    <p class="baca">Langsung kelihatan: \(v_2=2v_1\). Maka</p>
+    \[ 2v_1-v_2+0\cdot v_3=0 \]
+    <div class="jawab">Dependen, dengan hubungan \(\;2v_1-v_2=0\).</div>
+    <p class="baca">Rank matriksnya 2, jadi \(\{v_1,v_3\}\) sudah cukup membentang bidang yang sama. \(v_3=(1,0,1)\) bukan kelipatan \(v_1\), jadi keduanya independen satu sama lain — yang “berlebih” hanya \(v_2\).</p>
+    <div class="jeb">Menjawab “dependen karena \(v_2=2v_1\)” saja sudah benar, tapi poin (b) minta <i>hubungan linear</i> — tulis persamaannya dengan koefisien, bukan cuma kalimat.</div>
+  </div>
+</section>
+
+<section class="sheet" id="drill">
+  <div class="head"><div class="badge">+</div><div><h2>Drill Tambahan Tipe Ujian</h2><div class="sub">Bukan dari PDF — dibuat untuk menutup celah kisi-kisi</div></div></div>
+
+  <div class="drill"><span class="qtag">tambahan 1 · OBE</span>
+    <div class="q">Selesaikan dengan Gauss-Jordan: \(x+2y-z=2,\;2x+5y+z=1,\;3x+7y=4\).</div>
+    <details><summary>Lihat pembahasan</summary><div class="ans"><span class="lbl">Jawab</span>
+    \(\begin{pmatrix}1&2&-1&2\\2&5&1&1\\3&7&0&4\end{pmatrix}\to\begin{pmatrix}1&2&-1&2\\0&1&3&-3\\0&1&3&-2\end{pmatrix}\to\begin{pmatrix}1&0&-7&8\\0&1&3&-3\\0&0&0&1\end{pmatrix}\).
+    Baris terakhir \(0=1\) → <b>tidak ada solusi</b>. Soal ini sengaja dipilih supaya lu terbiasa berhenti dan menyimpulkan, bukan memaksakan jawaban.</div></details>
+  </div>
+
+  <div class="drill"><span class="qtag">tambahan 2 · determinan</span>
+    <div class="q">Hitung \(\det\begin{pmatrix}3&-1&2\\0&4&1\\2&0&-3\end{pmatrix}\) dengan Sarrus dan ekspansi kofaktor; cocokkan.</div>
+    <details><summary>Lihat pembahasan</summary><div class="ans"><span class="lbl">Jawab</span>
+    Sarrus: \((3)(4)(-3)+(-1)(1)(2)+(2)(0)(0)-(2)(4)(2)-(3)(1)(0)-(-1)(0)(-3)=-36-2-16=-54\).
+    Kofaktor baris 1: \(3(-12)-(-1)(-2)+2(0-8)=-36-2-16=-54\) ✓.</div></details>
+  </div>
+
+  <div class="drill"><span class="qtag">tambahan 3 · invers 3×3</span>
+    <div class="q">Cari \(A^{-1}\) untuk \(A=\begin{pmatrix}1&2&3\\0&1&4\\5&6&0\end{pmatrix}\), lalu cek \(AA^{-1}=I\).</div>
+    <details><summary>Lihat pembahasan</summary><div class="ans"><span class="lbl">Jawab</span>
+    \(\det A=1\). \(A^{-1}=\begin{pmatrix}-24&18&5\\20&-15&-4\\-5&4&1\end{pmatrix}\).
+    Cek baris 1 × kolom 1: \(-24+40-15=1\); baris 1 × kolom 2: \(18-30+12=0\); baris 2 × kolom 3: \(100-60-40=0\).</div></details>
+  </div>
+
+  <div class="drill"><span class="qtag">tambahan 4 · Cramer</span>
+    <div class="q">Selesaikan \(2x+y=7,\;x+3y=11\) dengan Cramer.</div>
+    <details><summary>Lihat pembahasan</summary><div class="ans"><span class="lbl">Jawab</span>
+    \(D=6-1=5\); \(D_x=21-11=10\); \(D_y=22-7=15\). Maka \(x=2,\;y=3\). Cek: \(4+3=7\) ✓, \(2+9=11\) ✓.</div></details>
+  </div>
+
+  <div class="drill"><span class="qtag">tambahan 5 · vektor</span>
+    <div class="q">\(u=(2,-1,2)\), \(v=(1,3,0)\). Hitung \(u\cdot v\), \(u\times v\), dan sudutnya.</div>
+    <details><summary>Lihat pembahasan</summary><div class="ans"><span class="lbl">Jawab</span>
+    \(u\cdot v=2-3+0=-1\) (tumpul). \(u\times v=((-1)(0)-2(3),\;2(1)-2(0),\;2(3)-(-1)(1))=(-6,2,7)\).
+    \(\|u\|=3\), \(\|v\|=\sqrt{10}\), jadi \(\cos\theta=-\frac{1}{3\sqrt{10}}\) → \(\theta\approx96{,}1^\circ\).</div></details>
+  </div>
+
+  <div class="drill"><span class="qtag">tambahan 6 · proyeksi</span>
+    <div class="q">Cari proyeksi \(u=(3,4,0)\) pada \(a=(1,2,2)\).</div>
+    <details><summary>Lihat pembahasan</summary><div class="ans"><span class="lbl">Jawab</span>
+    \(u\cdot a=3+8+0=11\); \(a\cdot a=9\); proyeksi \(=\frac{11}{9}(1,2,2)=(\frac{11}{9},\frac{22}{9},\frac{22}{9})\).</div></details>
+  </div>
+</section>
+
+</main>
+
+<aside class="rail right">
+  <div class="panel"><h4>Aturan Main</h4>
+    <div class="formula">Tutup pembahasan dulu<small>kerjakan di kertas, baru buka</small></div>
+    <div class="formula">Tanpa kalkulator<small>pertahankan bentuk eksak</small></div>
+    <div class="formula">Selalu cek<small>substitusi / \(AA^{-1}=I\) / dot = 0</small></div>
+  </div>
+  <div class="panel"><h4>Ringkas Jawaban</h4>
+    <div class="kv"><span>1</span><b>(1, 2, 3)</b></div>
+    <div class="kv"><span>2</span><b>(1, −1, 2)</b></div>
+    <div class="kv"><span>3</span><b>(3−2t, 1+t, t)</b></div>
+    <div class="kv"><span>4</span><b>14; θ≈33,2°</b></div>
+    <div class="kv"><span>5</span><b>(−7, 11, −5)</b></div>
+    <div class="kv"><span>6</span><b>(11/5, 22/5)</b></div>
+    <div class="kv"><span>7</span><b>dependen</b></div>
+  </div>
+  <div class="panel"><h4>Materi Terkait</h4><ul class="road">
+    <li><a href="materi.html#m1">Modul 1 · SPL &amp; OBE</a><span class="dot"></span></li>
+    <li><a href="materi.html#m4">Modul 4 · Invers</a><span class="dot"></span></li>
+    <li><a href="materi.html#m5">Modul 5 · Cramer</a><span class="dot"></span></li>
+    <li><a href="materi.html#m6">Modul 6 · Vektor</a><span class="dot"></span></li>
+  </ul></div>
+</aside>
+
+</div>
+
+<script>
+/* Bungkus pembahasan soal 1-7 supaya bisa ditutup: mahasiswa mengerjakan dulu. */
+(function(){
+  function wrap(){
+    document.querySelectorAll('section .bedah').forEach(function(box){
+      if(box.dataset.folded) return;
+      var soal = box.querySelector('.soal');
+      if(!soal) return;
+      var nodes = [], n = soal.nextElementSibling;
+      while(n){ nodes.push(n); n = n.nextElementSibling; }
+      if(!nodes.length) return;
+      var d = document.createElement('details');
+      d.className = 'reveal';
+      var s = document.createElement('summary');
+      s.textContent = 'Lihat pembahasan & langkah pengerjaan';
+      d.appendChild(s);
+      nodes.forEach(function(el){ d.appendChild(el); });
+      box.appendChild(d);
+      box.dataset.folded = '1';
+    });
+  }
+  function go(){
+    if(window.MathJax && MathJax.startup && MathJax.startup.promise){
+      MathJax.startup.promise.then(wrap).catch(wrap);
+    } else { wrap(); }
+  }
+  if(document.readyState === 'complete') go();
+  else window.addEventListener('load', function(){ setTimeout(go, 300); });
+})();
+</script>
+</body>
+</html>

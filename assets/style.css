@@ -68,6 +68,7 @@ p{margin:6px 0;background:rgba(253,250,242,.86)}
 .analogi p{margin:4px 0;font-size:13.5px;line-height:1.7;background:transparent}
 .analogi .kesimpulan{background:#fff;border:1px solid #ebd8b0;border-radius:6px;padding:8px 11px;margin-top:8px;
   font-size:13px;color:#613e05;font-weight:700;line-height:1.6}
+.pdf-slice{background:#f7f9fc;border:1px solid #d9e2ef;border-radius:8px;padding:12px;margin:14px 0}.ps-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:12px;line-height:1.5;margin-bottom:10px}.ps-head b{color:#1f4f7a}.ps-head span{color:#6a7280}.ps-head a{color:#1d6ea8;font-weight:700}.ps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.ps-item{display:block;background:#fff;border:1px solid #d9e2ef;border-radius:6px;padding:6px;color:#31516d;text-decoration:none;font-size:11px;font-weight:700;line-height:1.4}.ps-item:hover{border-color:#4789bd;box-shadow:0 2px 8px #31516d22}.ps-item img{display:block;width:100%;height:180px;object-fit:cover;object-position:top;border-radius:3px;margin-bottom:5px}.ps-item span{display:block}
 .trap-card{background:#fff5f3;border:1.5px solid #f1cfc8;border-left:4px solid var(--red);border-radius:8px;padding:11px 15px;margin:12px 0}
 .trap-card b{color:var(--red);font-size:14px}
 .trap-card p{margin:4px 0;font-size:13.5px;line-height:1.7;background:transparent}
